@@ -1,0 +1,350 @@
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="styles.css">
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+</head>
+<body>
+	<nav class="navbar navbar-default">
+	  <div class="container-fluid">
+	    <!-- Brand and toggle get grouped for better mobile display -->
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="#">SI Domino's Pizza</a><img id="logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Domino_pizza_logo.svg/langfr-220px-Domino_pizza_logo.svg.png"/>&nbsp;
+	    </div>
+
+	    <!-- Collect the nav links, forms, and other content for toggling -->
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <ul class="nav navbar-nav">
+	        <li class="active"><a href="#">Tableau de bord National <span class="sr-only">(current)</span></a></li>
+	        <li class="dropdown">
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Trier <span class="caret"></span></a>
+	          <ul class="dropdown-menu">
+	            <li><a href="#">Action</a></li>
+	            <li><a href="#">Another action</a></li>
+	            <li><a href="#">Something else here</a></li>
+	            <li role="separator" class="divider"></li>
+	            <li><a href="#">Separated link</a></li>
+	            <li role="separator" class="divider"></li>
+	            <li><a href="#">One more separated link</a></li>
+	          </ul>
+	        </li>
+	      </ul>
+	      <form class="navbar-form navbar-left">
+	        <div class="form-group">
+	          <input type="text" class="form-control" placeholder="Recherche">
+	        </div>
+	        <button type="submit" class="btn btn-default">Rechercher</button>
+	      </form>
+	      <ul class="nav navbar-nav navbar-right">
+	        <li class="dropdown">
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Gaylord ANSEL<span class="caret"></span></a>
+	          <ul class="dropdown-menu">
+	            <li><a href="#">Action</a></li>
+	            <li><a href="#">Another action</a></li>
+	            <li><a href="#">Something else here</a></li>
+	            <li role="separator" class="divider"></li>
+	            <li><a href="#">Separated link</a></li>
+	          </ul>
+	        </li>
+	      </ul>
+	    </div><!-- /.navbar-collapse -->
+	  </div><!-- /.container-fluid -->
+	</nav>
+
+	<div class="row">
+		<div class="col-md-4">
+			<canvas id="myChart" height="200px"></canvas>
+		</div>
+
+		<div class="col-md-4">
+			<canvas id="myPieChart" height="200px"></canvas>
+		</div>
+
+		<div class="col-md-4">
+			<canvas id="myPieChart2" height="200px"></canvas>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4">
+			<canvas id="chart4" height="200px"></canvas>
+		</div>
+
+		<div class="col-md-8">
+			<div id="map"></div>
+		</div>
+	</div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.min.js"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.js"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+		<script
+	  src="https://code.jquery.com/jquery-3.1.1.min.js"
+	  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+	  crossorigin="anonymous"></script>
+	<script>
+	var ctx = document.getElementById("myChart");
+	var myChart = new Chart(ctx, {
+	    type: 'bar',
+	    data: {
+	        labels: ["S42", "S43", "S44", "S45", "S46", "S47"],
+	        datasets: [{
+	            data: [12, 19, 3, 5, 2, 3],
+	            backgroundColor: [
+	                '#006491',
+	                '#E31837',
+	                '#006491',
+	                '#006491',
+	                '#006491',
+	                '#006491'
+	            ],
+	            borderColor: [
+	                '#006491',
+	                '#E31837',
+	                '#006491',
+	                '#006491',
+	                '#006491',
+	                '#006491'
+	            ],
+	            borderWidth: 1
+	        }]
+	    },
+	    options: {
+	    	title: {
+	            display: true,
+	            text: 'Nombre d\'incidents par semaine'
+	        },
+	        scales: {
+	            yAxes: [{
+	                ticks: {
+	                    beginAtZero:true
+	                }
+	            }]
+	        }
+	    }
+	});
+
+	var pieCanvas = $('#myPieChart');
+	var myPieChart = new Chart(pieCanvas,{
+	    type: 'pie',
+	    data: {
+		    labels: [
+		        "Opération",
+		        "Infrastructure",
+		        "Métier",
+		        "Problème informatique",
+		        "Système opérationnel",
+		        "Bureautique"
+		    ],
+		    datasets: [
+		        {
+		            data: [300, 20, 50, 150, 88, 27],
+		            backgroundColor: [
+		                "#006491",
+		                "#FFCE56",
+		                "#E31837",
+		                "#5692F5",
+		                "#ECECEC",
+		                "#F556AA",
+		            ],
+		            hoverBackgroundColor: [
+		                "#006491",
+		                "#FFCE56",
+		                "#E31837",
+		                "#5692F5",	
+		                "#ECECEC",
+	                    "#F556AA",	
+		            ]
+		        }]
+		},
+	    options: {
+	    	title: {
+	            display: true,
+	            text: 'Nombre d\'incidents par type'
+	        },
+	        scales: {
+	            yAxes: [{
+	                ticks: {
+	                    beginAtZero:true
+	                }
+	            }]
+	        }
+	    }
+	});
+
+
+	var pieCanvas2 = $('#myPieChart2');
+	var myPieChart = new Chart(pieCanvas2,{
+	    type: 'pie',
+	    data: {
+		    labels: [
+		        "OK",
+		        "En panne",
+		        "En cours de dépannage"
+		    ],
+		    datasets: [
+		        {
+		            data: [300, 20, 50],
+		            backgroundColor: [
+		                "#006491",
+		                "#FFCE56",
+		                "#E31837"
+		            ],
+		            hoverBackgroundColor: [
+		                "#006491",
+		                "#FFCE56",
+		                "#E31837"
+		            ]
+		        }]
+		},
+	    options: {
+	    	title: {
+	            display: true,
+	            text: 'Etat du matériel'
+	        },
+	        scales: {
+	            yAxes: [{
+	                ticks: {
+	                    beginAtZero:true
+	                }
+	            }]
+	        }
+	    }
+	});
+
+	var canvas4 = $('#chart4');
+	var myLineChart = new Chart(canvas4, {
+	    type: 'line',
+	    data: {
+		    labels: ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet"],
+		    datasets: [
+		        {
+		            label: "Durée moyenne de résolution des incidents (en minutes)",
+		            fill: false,
+		            lineTension: 0.1,
+		            backgroundColor: "#006491",
+		            borderColor: "#006491",
+		            borderCapStyle: 'butt',
+		            borderDash: [],
+		            borderDashOffset: 0.0,
+		            borderJoinStyle: 'miter',
+		            pointBorderColor: "rgba(75,192,192,1)",
+		            pointBackgroundColor: "#fff",
+		            pointBorderWidth: 1,
+		            pointHoverRadius: 5,
+		            pointHoverBackgroundColor:"#006491",
+		            pointHoverBorderColor: "#006491",
+		            pointHoverBorderWidth: 2,
+		            pointRadius: 1,
+		            pointHitRadius: 10,
+		            data: [65, 59, 80, 81, 56, 55, 40],
+		            spanGaps: false,
+		        }
+		    ]
+		},
+	    options: {
+        scales: {
+            yAxes: [{
+                stacked: true
+            }]
+        }
+    }
+	});
+
+ 		var styles = [
+            {
+                stylers: [
+                    { hue: "#00ffe6" },
+                    { saturation: -20 }
+                ]
+            },{
+                featureType: "road",
+                elementType: "geometry",
+                stylers: [
+                    { lightness: 100 },
+                    { visibility: "simplified" }
+                ]
+            },{
+                featureType: "road",
+                elementType: "labels",
+                stylers: [
+                    { visibility: "off" }
+                ]
+            }
+        ];
+        function initMap() {
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 13,
+                center: {lat: 48.866667, lng: 2.333333}
+            });
+            setMarkers(map);
+            map.setOptions({styles: styles});
+        }
+        function setMarkers(map) {
+        	var image = {
+                    url: 'warning.png',
+                    // This marker is 20 pixels wide by 32 pixels high.
+                    size: new google.maps.Size(24, 24),
+                    // The origin for this image is (0, 0).
+                    origin: new google.maps.Point(0, 0),
+                    // The anchor for this image is the base of the flagpole at (0, 32).
+                    anchor: new google.maps.Point(0, 0)
+                };
+                var positionsGPS = [
+                    ['En cours', 48.866967, 2.32, 26, 4, 'Incendie'],
+                    ['En attente', 48.8867, 2.35, 27, 5, 'Accident'],
+                    ['Terminée', 48.855667, 2.34, 28, 3, 'Prise d\'otages'],
+                    ['En cours', 48.8667, 2.35, 29, 2, 'Incendie'],
+                    ['Les secours sont en route', 48.8657, 2.3455, 29, 2, 'Prise de médicament'],
+                    ['En cours', 48.866666667, 2.3444444, 30, 1, 'Autres'],
+                    ['Les secours sont en route', 48.8657, 2.3455, 29, 2, 'Prise de médicament'],
+                    ['En cours', 48.766667, 2.35, 30, 1, 'Autres']
+                ];
+                var shape = {
+                    coords: [1, 1, 1, 20, 18, 20, 18, 1],
+                    type: 'poly'
+                };
+                for (var i = 0; i < positionsGPS.length; i++) {
+
+                    var marker = new google.maps.Marker({
+                        position: {lat: positionsGPS[i][1], lng:  positionsGPS[i][2]},
+                        map: map,
+                        icon: image,
+                        shape: shape,
+                        title: 'Cliquez pour voir l\'alerte',
+                        zIndex: 1,
+                    });
+                    // Ouvre le lien de l'annonce au click
+                    google.maps.event.addListener(marker, 'click',
+                        function() {
+                            window.open(
+                                $(this).attr('href'),
+                                '_blank' // <- This is what makes it open in a new window.
+                            );
+                        }
+                    );
+                }
+        }
+
+
+	</script>
+	<script async defer
+			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEdi45rDYP5etHUdAF_fIjZ88tsAtLwEg&signed_in=true&callback=initMap"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.js"></script>
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</body>
+</html>
