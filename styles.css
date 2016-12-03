@@ -9,3 +9,12 @@
  	padding: 20px;
  	width: 98%;
  }
+
+ .chiffre{
+ 	font-size: 120px;
+ }
+
+ #nbCommande{
+ 	line-height: 200px;
+ 	vertical-align: middle;
+ }

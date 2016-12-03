@@ -25,8 +25,8 @@
 	    <!-- Collect the nav links, forms, and other content for toggling -->
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav">
-	        <li class="active"><a href="#">Tableau de bord National <span class="sr-only">(current)</span></a></li>
-	        <li><a href="site.html">Tableau de bord Lille</a></li>
+	        <li><a href="index.html">Tableau de bord National <span class="sr-only">(current)</span></a></li>
+	        <li class="active"><a href="site.html">Tableau de bord Lille</a></li>
 	        <li class="dropdown">
 	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Trier <span class="caret"></span></a>
 	          <ul class="dropdown-menu">
@@ -67,21 +67,22 @@
 			<canvas id="myChart" height="200px"></canvas>
 		</div>
 
+		<div class="col-md-8">
+			<div id="map"></div>
+		</div>
+	</div>
+	<div class="row">
+		<div id="nbCommande" class="col-md-4 text-center">
+			<p><span class="chiffre">85</span> commandes sur le site depuis ce matin.</p>
+			<p>27 commandes annulées sur le site depuis ce matin.</p>
+		</div>
+
 		<div class="col-md-4">
 			<canvas id="myPieChart" height="200px"></canvas>
 		</div>
 
 		<div class="col-md-4">
 			<canvas id="myPieChart2" height="200px"></canvas>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-4">
-			<canvas id="chart4" height="200px"></canvas>
-		</div>
-
-		<div class="col-md-8">
-			<div id="map"></div>
 		</div>
 	</div>
 
@@ -142,12 +143,12 @@
 	    type: 'pie',
 	    data: {
 		    labels: [
-		        "Opération",
-		        "Infrastructure",
+		        "Annulée au niveau du panier",
+		        "Annulée au niveau de la commande",
 		        "Métier",
 		        "Problème informatique",
 		        "Système opérationnel",
-		        "Bureautique"
+		        "Non identifié"
 		    ],
 		    datasets: [
 		        {
@@ -173,7 +174,7 @@
 	    options: {
 	    	title: {
 	            display: true,
-	            text: 'Nombre d\'incidents par type'
+	            text: 'Nombre d\'annulation par type'
 	        },
 	        scales: {
 	            yAxes: [{
@@ -197,7 +198,7 @@
 		    ],
 		    datasets: [
 		        {
-		            data: [300, 20, 50],
+		            data: [300, 4, 5],
 		            backgroundColor: [
 		                "#006491",
 		                "#FFCE56",
@@ -287,8 +288,8 @@
         ];
         function initMap() {
             var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 6,
-                center: {lat: 48.866667, lng: 2.333333}
+                zoom: 13,
+                center: {lat: 50.633333, lng: 3.066667}
             });
             setMarkers(map);
             map.setOptions({styles: styles});
@@ -304,14 +305,14 @@
                     anchor: new google.maps.Point(0, 0)
                 };
                 var positionsGPS = [
-                    ['En cours', 48.866967, 2.32, 26, 4, 'Incendie'],
-                    ['En attente', 48.8867, 2.35, 27, 5, 'Accident'],
-                    ['Terminée', 48.855667, 2.34, 28, 3, 'Prise d\'otages'],
-                    ['En cours', 48.8667, 2.35, 29, 2, 'Incendie'],
-                    ['Les secours sont en route', 48.8657, 2.3455, 29, 2, 'Prise de médicament'],
-                    ['En cours', 48.866666667, 2.3444444, 30, 1, 'Autres'],
-                    ['Les secours sont en route', 48.8657, 2.3455, 29, 2, 'Prise de médicament'],
-                    ['En cours', 48.766667, 2.35, 30, 1, 'Autres']
+                    ['En cours', 50.63, 3.0667, 26, 4, 'Incendie'],
+                    ['En attente', 50.655533, 3.066, 27, 5, 'Accident'],
+                    ['Terminée', 50.633333, 3.066667, 28, 3, 'Prise d\'otages'],
+                    ['En cours', 50.639, 3.0559967, 29, 2, 'Incendie'],
+                    ['Les secours sont en route', 50.629, 3.05667, 29, 2, 'Prise de médicament'],
+                    ['En cours', 50.6443333, 3.07667, 30, 1, 'Autres'],
+                    ['Les secours sont en route', 50.633333, 3.066667, 29, 2, 'Prise de médicament'],
+                    ['En cours', 50.633333, 3.066667, 30, 1, 'Autres']
                 ];
                 var shape = {
                     coords: [1, 1, 1, 20, 18, 20, 18, 1],
